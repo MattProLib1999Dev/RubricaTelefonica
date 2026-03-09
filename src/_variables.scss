@@ -1,0 +1,42 @@
+// ==========================================================================
+// CONFIGURAZIONE VARIABILI GLOBALI - Rubrica Telefonica (V2)
+// ==========================================================================
+
+// 1. Tavolozza Colori (Brand & Feedback)
+$primary:       #0056b3;
+$secondary:     #6c757d;
+$success:       #28a745;
+$info:          #17a2b8;
+$warning:       #ffc107;
+$danger:        #dc3545;
+$color-white:   #ffffff;
+
+// 2. Sfondi e Testi
+$body-bg-color:       #f8f9fa;
+$text-color-primary:  #212529;
+$text-color-muted:    #6c757d;
+
+// 3. Form e Input (Autocomplete, Multi-select, Datepicker)
+$input-height:            38px;
+$input-font-weight:       400;
+$input-border-color:      #ced4da;
+$input-border-radius:     4px;
+$input-focus-box-shadow:  0 0 0 0.2rem rgba($primary, 0.25);
+
+// --- AGGIUNTA: Variabili per stati disabilitati ---
+$background-color-disabled: #e9ecef; // Grigio chiaro standard (tipo Bootstrap)
+$border-color-disabled:     #dee2e6;
+$text-color-disabled:       #6c757d;
+$color-disabled:            #6c757d;
+// --------------------------------------------------
+
+// 4. Componenti Specifici (Tabella e Accordion)
+$table-border-color:    $secondary;
+$accordion-padding-y:   1rem;
+$accordion-padding-x:   1.25rem;
+
+// 5. Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;

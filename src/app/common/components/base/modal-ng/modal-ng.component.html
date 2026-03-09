@@ -1,0 +1,37 @@
+<div class="modal fade"  bsMaterialFocusBridge [ngClass]="sizeclass" [attr.id]="uid" tabindex="-1" [attr.aria-labelledby]="uid"
+    [attr.data-bs-backdrop]="static?'static':'-'" [attr.data-bs-keyboard]="!static" aria-hidden="true">
+    <div class="modal-dialog" [ngClass]="{'modal-fullscreen':fullscreen}">
+        <div class="modal-content">
+            <div class="modal-header sh-modal-header gap-1">
+                @if (title.length > 0) {
+                    <h5 class="modal-title">{{title | translateNg}}</h5>
+                }
+                @if (subtitle.length > 0) {
+                    <h5 class="modal-subtitle">{{subtitle | translateNg}}</h5>
+                }
+                @if(!static){
+                <button data-bs-theme="dark" [attr.id]="uid + '_hidebutton'" type="button" class="btn-close"
+                    data-bs-dismiss="modal" aria-label="Close"></button>
+                }
+            </div>
+            <div class="modal-body sh-modal-body">
+                <ng-content select="[modal-body]"></ng-content>
+            </div>
+            <div class="modal-footer sh-modal-footer">
+                @if(closeText.length>0){
+                    <button type="button" class="btn btn-secondary md" data-bs-dismiss="modal">{{closeText |
+                        translateNg}}</button>
+                }
+                <ng-content select="[modal-footer]"></ng-content>
+                @if(submitText.length>0){
+                    <button type="submit" [disabled]="!submitEnable" [attr.form]="formName"
+                        class="btn btn-primary md" (click)="confirm()">{{submitText | translateNg}}</button>
+                }
+            </div>
+        </div>
+    </div>
+    <button style="display: none;" [attr.id]="uid + '_hidebutton'" data-bs-dismiss="modal"
+        [attr.data-bs-target]="'#' + uid"></button>
+</div>
+<button style="display: none;" [attr.id]="uid + '_showbutton'" data-bs-toggle="modal"
+    [attr.data-bs-target]="'#' + uid"></button>

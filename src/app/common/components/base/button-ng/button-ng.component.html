@@ -1,0 +1,60 @@
+@switch (type) {
+    @case ('button') {
+        <button class="btn d-flex align-items-center justify-content-center" [disabled]="state=='disabled'" [ngClass]="'btn-' + color + ' ' + size + ' ' + customClass" (click)="onClick()"
+            [attr.data-bs-dismiss]="dismissModal? 'modal':''">
+            @if(!!preIcon.icon.length) {
+                <span class="d-flex">
+                    <mat-icon [ngClass]="'me-1 ' + preIcon.customClass" aria-hidden="false" [attr.aria-label]="preIcon.ariaLablel" [fontIcon]="preIcon.icon"></mat-icon>
+                </span>
+            }
+            <span class="d-flex">
+                {{title}}
+            </span>
+            @if(!!postIcon.icon.length) {
+                <span class="d-flex">
+                    <mat-icon [ngClass]="'ms-1 ' + postIcon.customClass" aria-hidden="false" [attr.aria-label]="postIcon.ariaLablel" [fontIcon]="postIcon.icon"></mat-icon>
+                </span>
+            }
+            <ng-content select="[btn-body]"></ng-content>
+        </button>
+    }
+    @case ('link') {
+        <a href="#" [ngClass]="'btn-' + color + ' ' + size + ' ' + customClass" title="{{title}}" (click)="onClick()">
+            {{title}}
+        </a>
+    }
+    @case ('icon') {
+        <button class="btn btn-icon d-flex align-items-center justify-content-center" [disabled]="state=='disabled'" [ngClass]="'btn-' + color + ' ' + size + ' ' + customClass" (click)="onClick()"
+            [attr.data-bs-dismiss]="dismissModal? 'modal':''">
+            @if(!!preIcon.icon.length) {
+                <mat-icon [ngClass]="preIcon.customClass" aria-hidden="false" [attr.aria-label]="preIcon.ariaLablel" [fontIcon]="preIcon.icon"></mat-icon>
+            }
+        </button>
+    }
+    @case ('submit') {
+        <button class="btn d-flex align-items-center justify-content-center" [disabled]="state=='disabled'" [ngClass]="'btn-' + color + ' ' + size + ' ' + customClass" (click)="onClick(true)" type="submit"
+            [attr.data-bs-dismiss]="dismissModal? 'modal':''" [attr.form]="formName">
+            @if(!!preIcon.icon.length) {
+                <span class="d-flex">
+                    <mat-icon [ngClass]="'me-1 ' + preIcon.customClass" aria-hidden="false" [attr.aria-label]="preIcon.ariaLablel" [fontIcon]="preIcon.icon"></mat-icon>
+                </span>
+            }
+            <span class="d-flex">
+                {{title}}
+            </span>
+            @if(!!postIcon.icon.length) {
+                <span class="d-flex">
+                    <mat-icon [ngClass]="'ms-1 ' + postIcon.customClass" aria-hidden="false" [attr.aria-label]="postIcon.ariaLablel" [fontIcon]="postIcon.icon"></mat-icon>
+                </span>
+            }
+        </button>
+    }
+    @case ('tooltip') {
+        <button class="btn btn-icon d-flex align-items-center justify-content-center" [disabled]="state=='disabled'" [ngClass]="'btn-' + color + ' ' + size + ' ' + customClass"
+            [attr.placement]="tooltipPlacement" [ngbTooltip]="tooltipValue">
+            @if(!!preIcon.icon.length) {
+                <mat-icon [ngClass]="preIcon.customClass" aria-hidden="false" [attr.aria-label]="preIcon.ariaLablel" [fontIcon]="preIcon.icon"></mat-icon>
+            }
+        </button>
+    }
+}

@@ -1,0 +1,39 @@
+
+@if(label.length>0){
+    <label for="{{uid}}" class="sh-form-label form-label" [ngClass]="[inlineLabelClass]">{{label}}</label>
+}
+
+
+<div class="position-relative sh-input-group">
+    <div #multiSelRef
+      class="multiselect d-flex flex-wrap gap-1 align-items-center"
+      [ngClass]="{'col':inlineLabel, 'is-valid':isValid && isDirty,'is-invalid':!isValid && isDirty, 'form-select':true, 'cursor-pointer': true, 
+    'multiselect-focus': elemFocused, 'disabled' : isDisabled()}"
+      >
+        @for (item of selected(); track $index) {
+            <span class="badge rounded-pill bg-primary d-flex align-items-center">
+                {{item[textfield]}} 
+                @if(!isDisabled()) {
+                    <button [id]="'btnclose_' + uid + '_' + $index" (click)="remove(item)" type="button" class="btn-close btn-close-white btn-sm ms-1" aria-label="Close"></button>
+                }
+            </span>
+        }
+    </div>
+
+    @if(!!data.length && expanded) {
+        <ul class="dropdown-menu multi-dropdown-menu w-100 mt-1 show sh-multi-dropdown" style="max-height: 150px; overflow-y: auto;">
+            @for (item of data; track $index) {
+            <li class="dropdown-item w-100">
+                <span class="d-flex overflow-x-hidden">
+                    <sh-checkbox [(ngModel)]="item.checked" (ngModelChange)='select(item)' [label]="item[textfield]" [fullLength]="true"></sh-checkbox>
+                </span>
+            </li>
+            }
+        </ul>
+    }
+</div>
+
+@if(isDirty){
+    <sh-validation-message [errors]="errors" [showValidators]="showValidators"
+        [validatorToolTip]="validatorToolTip"></sh-validation-message>
+}

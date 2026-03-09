@@ -1,0 +1,93 @@
+<div class="d-flex flex-column gap">
+  <div class="table-responsive pb-2">
+    <table class="table table-hover mb-0">
+      <!-- HEADER -->
+      <thead>
+        <tr>
+          @for (col of columns(); track col.key) {
+            <th
+              scope="col"
+              [class]="thClass(col)"
+              [style.width]="col.width || null"
+              [attr.aria-sort]="getSortAriaSort(col)"
+              (click)="onSort(col)">
+              <div [class]="thContentClass(col)">
+                <span>{{ col.header | translateNg }}</span>
+                @if (col.sortable) {
+                  <mat-icon [fontIcon]="getSortIcon(col)" class="sort-icon"></mat-icon>
+                }
+              </div>
+            </th>
+          }
+        </tr>
+      </thead>
+
+      <!-- LOADING STATE -->
+      @if (loading()) {
+        <tbody>
+          <tr>
+            <td [attr.colspan]="columns().length" class="py-4">
+              <div class="d-flex align-items-center justify-content-center gap-2">
+                <div class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></div>
+                <span class="text-muted">{{ 'CARICAMENTO_LABEL' | translateNg }}</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      }
+      <!-- ERROR STATE -->
+      @else if (errorText()) {
+        <tbody>
+          <tr>
+            <td [attr.colspan]="columns().length" class="py-4 text-center">
+              <div class="d-flex align-items-center justify-content-center gap-2 text-danger">
+                <mat-icon fontIcon="error" class="text-danger"></mat-icon>
+                <span>{{ errorText() }}</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      }
+      <!-- EMPTY STATE -->
+      @else if (!rows() || rows()!.length === 0) {
+        <tbody>
+          <tr>
+            <td [attr.colspan]="columns().length" class="py-4 text-muted empty-state">
+              {{ emptyText() }}
+            </td>
+          </tr>
+        </tbody>
+      }
+      <!-- DATA ROWS -->
+      @else {
+        <tbody>
+          @for (row of rows(); track trackRow($index, row)) {
+            <tr [class]="getRowClass()" (click)="onRowClick(row)">
+              @for (col of columns(); track col.key) {
+                <td [class]="tdClass(col)" [title]="hasCellTemplate(col.key) ? '' : cellValue(row, col)">
+                  @if (hasCellTemplate(col.key)) {
+                    <ng-container *ngTemplateOutlet="getCellTemplate(col.key); context: { $implicit: row, row: row }"></ng-container>
+                  } @else {
+                    {{ cellValue(row, col) }}
+                  }
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      }
+    </table>
+  </div>
+
+  <!-- PAGINATION -->
+  @if (page()) {
+    <div class="d-flex justify-content-center">
+    <sh-pagination
+      [rowCount]="page()!.total"
+      [rowSize]="page()!.pageSize"
+      [currentPage]="page()!.page"
+      (pageChange)="pageChange.emit($event)">
+</sh-pagination>
+    </div>
+  }
+</div>

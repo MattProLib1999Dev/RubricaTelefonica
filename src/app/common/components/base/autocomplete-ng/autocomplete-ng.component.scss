@@ -1,0 +1,35 @@
+@use 'variables' as *;
+
+
+.autocomplete-input {
+    font-weight: $input-font-weight;
+}
+
+.autocomplete-input-wrapper-focused {
+    box-shadow: $input-focus-box-shadow;
+}
+
+.autocomplete-dropdown-menu {
+    padding: 16px 8px;
+    top: 100%;
+    position: absolute;
+}
+
+.autocomplete-input-wrapper.is-loading.is-valid,
+.autocomplete-input-wrapper.is-loading.is-invalid,
+.autocomplete-input-wrapper.loaded.is-valid,
+.autocomplete-input-wrapper.loaded.is-invalid {
+    padding-right: 3em;
+}
+
+.autocomplete-input-wrapper.disabled {
+    opacity: 1;
+    background-color: #{$background-color-disabled};
+    border-color: #{$border-color-disabled};
+
+    & input {
+        background-color: #{$background-color-disabled};
+        color: #{$color-disabled};
+    }
+}
+

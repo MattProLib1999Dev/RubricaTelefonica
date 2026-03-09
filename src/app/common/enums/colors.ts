@@ -1,0 +1,17 @@
+export enum colors {
+    primary = "primary",
+    outline_primary = "outline-primary",
+    light_primary = "light-primary",
+    secondary = "secondary",
+    outline_secondary = "outline-secondary",
+    light_secondary = "light-secondary",
+    success = "success",
+    outline_success = "outline-success",
+    light_success = "light-success",
+    warning = "warning",
+    outline_warning = "outline-warning",
+    light_warning = "light-warning",
+    danger = "danger",
+    outline_danger = "outline-danger",
+    light_danger = "light-danger",
+}

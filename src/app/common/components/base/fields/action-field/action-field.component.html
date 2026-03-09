@@ -1,0 +1,30 @@
+@for (b of validButtons; track $index) {
+@if(b.state==3){
+
+}
+@else{
+@switch (b.type) {
+@case ('button') {
+<button class="btn btn-{{b.color}}" (click)="onClick(b.commandName)">
+    {{b.title}}
+    <span class="material-symbols-outlined">
+        {{b.icon}}
+    </span>
+</button>
+}
+@case ('link') {
+<a href="#" title="{{b.title}}" (click)="onClick(b.commandName)">
+    {{b.title}}
+</a>
+}
+@case ('icon') {
+
+<a href="#" title="{{b.title}}" (click)="onClick(b.commandName)">
+    <span class="material-symbols-outlined text-{{b.color}}">
+        {{b.icon}}
+    </span>
+</a>
+}
+}
+}
+}

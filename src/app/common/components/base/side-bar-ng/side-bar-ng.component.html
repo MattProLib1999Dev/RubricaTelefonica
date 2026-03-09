@@ -1,0 +1,19 @@
+<ul class="nav flex-column">
+    @for (item of menu; track $index) {
+    <li class="nav-item" [ngClass]="{'active':currentUrl.length>0 && currentUrl==item.url}">
+        @if(item.children.length==0){
+        <a [routerLink]="item.url" class="nav-link"
+            [ngClass]="{'active':currentUrl.length>0 && currentUrl==item.url}">{{item.title}}</a>
+        }@else {
+        <strong style="cursor: pointer;" data-bs-toggle="collapse" [attr.data-bs-target]="'#'+uid + '_' + $index + '_collapse'">
+            <span class="material-symbols-outlined align-middle">
+                arrow_right
+            </span>
+            {{item.title}}</strong>
+        <div class="collapse show ms-4" [attr.id]="uid + '_' + $index + '_collapse'">
+            <sh-sidebar [menu]="item.children"></sh-sidebar>
+        </div>
+        }
+    </li>
+    }
+</ul>

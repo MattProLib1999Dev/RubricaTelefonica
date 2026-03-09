@@ -1,0 +1,11 @@
+<div class="mb-3" [ngClass]="customClass()">
+  <div class="d-flex align-items-start gap-2">
+    <div class="icon-container d-flex align-items-center justify-content-center flex-shrink-0">
+      <mat-icon [fontIcon]="icon()" class="icon-content"></mat-icon>
+    </div>
+    <h5 class="fw-bold mb-1">{{ title() | translateNg }}</h5>
+  </div>
+  <p class="text-muted mb-0 fw-normal lh-base description">
+    {{ description() | translateNg }}
+  </p>
+</div>

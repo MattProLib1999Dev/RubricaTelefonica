@@ -1,0 +1,12 @@
+<nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '';">
+    <ol class="breadcrumb">
+        @for (item of breadCrumbs; track $index) {
+        <li class="breadcrumb-item" [ngClass]="{'active':$index==breadCrumbs.length-1}">
+            @if($index>0){
+                <span style="font-size: 18px;">&gt;</span>
+            }
+            <a href="#" style="font-size: 18px;" [routerLink]="item.url">{{item.title}}</a>
+        </li>
+        }
+    </ol>
+</nav>

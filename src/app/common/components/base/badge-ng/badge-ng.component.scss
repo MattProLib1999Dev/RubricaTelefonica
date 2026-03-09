@@ -1,0 +1,53 @@
+@use 'variables' as *;
+
+
+$bg-primary: #{$primary};
+$bg-inverted: #DDEFFC;
+
+.sh-default-badge {
+    border-radius: 8px;
+    padding: 0.125rem 0.5rem 0.125rem 0.5rem;
+}
+
+.sh-square-badge {
+    border-radius: 10%;
+}
+
+.sh-round-badge {
+    border-radius: 100%;
+}
+
+.primary {
+    background: #{$bg-primary};
+    color: white;
+}
+
+.inverted {
+    background: #{$bg-inverted};
+    color: #{$bg-primary};
+}
+
+.success {
+    background: #00A63E;
+    color: #{$color-white};
+}
+
+.danger {
+    background: #FFE2E2;
+    color: #9D1717;
+}
+
+.warning {
+    background: #FEF3C6;
+    color: #92400E;
+}
+
+.success-light {
+    background: #D6FFE5;
+    color: #067530;
+}
+
+.info {
+    background: #C3E4FA;
+    color: #244C84;
+}

@@ -1,0 +1,39 @@
+<div>
+    <div>
+        <label for="{{uid}}" class=" btn btn-primary">
+
+            <span class="material-symbols-outlined">
+                upload
+            </span>
+            <span class="align-top">
+                {{label}}
+            </span>
+
+        </label>
+        @if(showPanel){
+        <span class="align-top">
+            @switch (filemode) {
+            @case (1) {
+            <span class="material-symbols-outlined text-success">check_circle</span>
+            }
+            @case (2) {
+            <span class="material-symbols-outlined text-danger">error</span>
+            }
+            @case (3) {
+            <span class="material-symbols-outlined text-primary">downloading</span>
+            }
+            }
+
+            <span class="mt-2 align-top">
+                {{filename}}: ({{getsize()}})
+            </span>
+        </span>
+        }
+        <input [attr.id]="uid" type="file" style="display: none;" [disabled]="isDisabled()" [readonly]="readonly"
+            [multiple]="multiple" (change)="upload($event)">
+    </div>
+    @if(isDirty){
+    <sh-validation-message [errors]="errors" [showValidators]="showValidators"
+        [validatorToolTip]="validatorToolTip"></sh-validation-message>
+    }
+</div>

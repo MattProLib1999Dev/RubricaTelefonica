@@ -1,0 +1,27 @@
+<div class="container">
+
+    @if (vm$ | async; as vm) {
+    <div class="header mb-4">
+      <h1 class="h4 mb-1 d-flex align-items-center gap-2">
+        @if (vm.icon) {
+        <div class="icon-container border rounded-5 d-flex align-items-center justify-content-center flex-shrink-0">
+          <mat-icon [fontIcon]="vm.icon" class="icon-content"></mat-icon>
+        </div>
+        }
+        <div class="fw-bold fs-3">
+          {{ vm.title | translateNg}}
+        </div>
+      </h1>
+      @if (vm.description) {
+      <p class="mb-0 description fw-normal lh-base">
+
+        {{ vm.description |translateNg}}
+      </p>
+      }
+    </div>
+    }
+
+    <router-outlet></router-outlet>
+
+  </div>
+

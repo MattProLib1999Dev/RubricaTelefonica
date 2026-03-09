@@ -1,0 +1,60 @@
+@use 'variables' as *;
+
+
+.datepicker-anchor {
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.datepicker-anchor .mat-form-field-wrapper,
+.datepicker-anchor .mat-form-field-flex,
+.datepicker-anchor .mat-input-element {
+    display: none !important;
+}
+
+.datepicker-btn {
+    background-color: #FFFFFF;
+    border: 1px solid #CEDDE9;
+    width: 11rem;
+    justify-content: center;
+}
+
+.datepicker-slider-btn {
+    background-color: transparent;
+    border: 0;
+
+    &:active {
+        background-color: #FFFFFF;
+    }
+}
+
+::ng-deep .mat-calendar-body-label {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    color: transparent !important;
+}
+
+.sh-datepicker-norm {
+    min-height: #{$input-height};
+}
+
+.sh-datepicker-norm-focus {
+    box-shadow: $input-focus-box-shadow;
+}
+
+.datepicker-button-icon {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1.25rem;
+}
+.picker-icon {
+    font-size: 1rem;
+    color: #747A7C;
+    width: 1rem;
+    height: 1rem;
+}

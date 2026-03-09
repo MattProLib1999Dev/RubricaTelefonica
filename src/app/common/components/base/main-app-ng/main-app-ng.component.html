@@ -1,0 +1,16 @@
+<sh-modal [title]="title" [command]="modal" [closeText]="closeText || ''" submitText="" [subtitle]="subtitle || ''">
+    <div class="warning-modal-body" modal-body>
+        {{text | translateNg}}
+    </div>
+    @if(!!submitText && !!submitText.length) {
+        <div modal-footer>
+            <sh-button [attr.data-bs-dismiss]="'modal'" [size]="'normal'" [title]="submitText | translateNg" (onclick)="confirm()"></sh-button>
+        </div>
+    }
+</sh-modal>
+
+<div class="sh-spinner d-flex align-items-center" [ngClass]="{'sh-showspinner':isSpinning}">
+    <div class="spinner-border" style="width: 4rem; height: 4rem;margin: 0 auto;" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>

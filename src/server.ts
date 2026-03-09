@@ -4,65 +4,65 @@ import {
   isMainModule,
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { join } from 'node:path';
 
+// Cartella contenente i file statici del browser (compilati da Angular)
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 /**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
+ * Esempio di endpoint API REST.
+ * Definire qui le rotte API prima della gestione del rendering Angular.
  */
+app.get('/api/test', (req: Request, res: Response) => {
+  res.json({
+    message: 'API Express perfettamente funzionante!',
+    timestamp: new Date().toISOString()
+  });
+});
 
 /**
- * Serve static files from /browser
+ * Serve i file statici dalla cartella /browser (JS, CSS, Immagini)
  */
 app.use(
   express.static(browserDistFolder, {
-    maxAge: '1y',
+    maxAge: '1y', // Cache a lungo termine per file immutabili
     index: false,
     redirect: false,
   }),
 );
 
 /**
- * Handle all other requests by rendering the Angular application.
+ * Gestisce tutte le altre richieste renderizzando l'applicazione Angular (SSR).
  */
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
+    .then((response) => {
+      // Se Angular genera una risposta, la scrive nella risposta Node, altrimenti passa oltre
+      if (response) {
+        return writeResponseToNodeResponse(response, res);
+      }
+      return next();
+    })
     .catch(next);
 });
 
 /**
- * Start the server if this module is the main entry point, or it is ran via PM2.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
+ * Avvia il server se questo modulo è il punto di ingresso principale o gestito da PM2.
  */
 if (isMainModule(import.meta.url) || process.env['pm_id']) {
-  const port = process.env['PORT'] || 4000;
-  app.listen(port, (error) => {
-    if (error) {
-      throw error;
-    }
+  const port = Number(process.env['PORT'] || 4000);
 
-    console.log(`Node Express server listening on http://localhost:${port}`);
+  app.listen(port, () => {
+    console.log(`🚀 Node Express server listening on http://localhost:${port}`);
   });
 }
 
 /**
- * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
+ * Request handler utilizzato da Angular CLI o Firebase Cloud Functions.
  */
 export const reqHandler = createNodeRequestHandler(app);

@@ -1,0 +1,84 @@
+<ng-template #contentTemplate>
+  <div class="w-100 mt-2 mb-3">
+    @let addFilters = config().addFilters;
+    <form [formGroup]="form()" class="d-flex gap-2 flex-md-row flex-column flex-wrap" (ngSubmit)="onSubmit()" id="query-form">
+      @for(field of visibleFields(); track field.key) { @switch (field.type)
+      { @case ("select") {
+      <sh-select [formControlName]="field.key" [placeholder]="field.placeholder || ''" [dataSource]="field.options">
+      </sh-select>
+      } @case ('checkbox') {
+      <sh-checkbox [formControlName]="field.key" class="align-self-center">
+        {{field.label}}
+      </sh-checkbox>
+      }
+      @case ('datepicker') {
+      <sh-datepicker [formControlName]="field.key" [placeholder]="field.placeholder || ''" >
+      </sh-datepicker>
+      }
+      @case ('multiselect') {
+      <sh-multi-select [formControlName]="field.key" [placeholder]="field.placeholder || ''"
+        [dataSource]="field.options" [resetCommand]="getResetCommand(field.key)!">
+      </sh-multi-select>
+      }
+      @case('text') {
+      <sh-textbox [formControlName]="field.key" [placeholder]="field.placeholder || ''" type="text"></sh-textbox>
+      }
+      @case('number') {
+      <sh-textbox [formControlName]="field.key" [placeholder]="field.placeholder || ''" type="number"></sh-textbox>
+      }
+      @case('autocomplete') {
+      <sh-autocomplete [formControlName]="field.key" [placeholder]="field.placeholder || ''"></sh-autocomplete>
+      }
+      @default {
+      } } }
+
+      @if(addFilters?.enabled && availableFilters().length > 0) {
+      <div class="position-relative" #filterDropdownRef>
+        <sh-button color="secondary" type="button" [title]="addFilters?.label || ''" [preIcon]="{icon: 'add'}" size="sm"
+          customClass="p-2"
+          (click)="toggleFilterDropdown()">
+        </sh-button>
+
+        @if(expanded()) {
+        <ul class="dropdown-menu show position-absolute mt-1 overflow-auto p-2">
+          <input type="text" class="form-control mb-2" [placeholder]="addFilters?.searchPlaceholder || ''"
+            (input)="onSearch($event)" (click)="$event.stopPropagation()" />
+          @for (filter of availableFilters(); track filter.key) {
+          <li>
+            <button class="dropdown-item" type="button" (click)="selectFilter(filter)" style="font-size: .875rem">
+              {{filter.pickerLabel || filter.label}}
+            </button>
+          </li>
+          }
+        </ul>
+        }
+      </div>
+      }
+    </form>
+
+    @if(variant() === 'card') {
+      <hr class="w-100 my-3 border-2 border-secondary opacity-25">
+    } @else {
+      <div class="w-100  my-3"></div>
+    }
+
+    <!-- {{ formValue() | json }} -->
+
+    <div class="d-flex justify-content-end gap-3 mb-2">
+      <sh-button [title]="clearText()" color="secondary-outline" type="button" (click)="onClear()"
+        [preIcon]="{icon: 'restart_alt'}">
+      </sh-button>
+      <sh-button [title]="submitText()" type="submit" formName="query-form" [preIcon]="{icon: 'search'}"
+        [state]="isSubmitDisabled() ? 'disabled' : 'active'">
+      </sh-button>
+    </div>
+  </div>
+</ng-template>
+
+@if(variant() === 'card') {
+<sh-card size="full">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</sh-card>
+} @else {
+<ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+}

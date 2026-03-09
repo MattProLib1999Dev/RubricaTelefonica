@@ -1,0 +1,26 @@
+@use 'variables' as *;
+
+.multi-input {
+    font-weight: $input-font-weight;
+}
+
+.multi-input-wrapper-focused {
+    box-shadow: $input-focus-box-shadow;
+}
+
+.multi-dropdown-menu {
+    padding: 16px 8px;
+    top: 100%;
+    position: absolute;
+}
+
+.multi-input-wrapper.disabled {
+    opacity: 1;
+    background-color: $background-color-disabled;
+    border-color: $border-color-disabled;
+
+    & input {
+        background-color: $background-color-disabled;
+        color: $text-color-disabled; // Ora questa variabile esiste!
+    }
+}

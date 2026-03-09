@@ -1,0 +1,5 @@
+@if(editing){
+<sh-select [(ngModel)]="data[boundField]" [dataSource]="selectData"></sh-select>
+}@else {
+{{data[boundField]}}
+}

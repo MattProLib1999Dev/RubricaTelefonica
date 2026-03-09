@@ -1,0 +1,7 @@
+<div class="form-check" [ngClass]="{'form-switch':enableSwitch,'form-check-inline':inlineStack}">
+  <input type="checkbox" value="" [attr.id]="uid" [disabled]="isDisabled()" 
+    [ngClass]="{'form-check-input':!enableButton,'btn-check':enableButton}" [(ngModel)]="value">
+  <label [ngClass]="{'form-check-label':!enableButton,'btn':enableButton, 'w-100': fullLength}" class="{{buttonClass}} fw-medium" for="{{uid}}">
+    {{label}}
+  </label>
+</div>

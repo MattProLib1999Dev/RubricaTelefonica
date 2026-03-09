@@ -1,0 +1,138 @@
+@use 'variables' as *;
+@use '../../../../../variables' as *;
+
+.table {
+  border: 1px solid $secondary !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  table-layout: fixed;
+  width: 100%;
+
+  thead {
+    th {
+      background-color: $body-bg-color!important;
+      color: $text-color-primary;
+      font-weight: 500;
+      font-size: 0.875rem;
+      border-bottom: 1px solid $secondary !important;
+      border-top: none !important;
+      border-left: none !important;
+      border-right: none !important;
+      padding: 0.75rem 1rem;
+      white-space: nowrap;
+
+      &.sortable {
+        cursor: pointer;
+        user-select: none;
+
+        &:hover {
+          background-color: darken($body-bg-color, 3%) !important;
+        }
+      }
+
+      .sort-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        opacity: 0.5;
+        transition: opacity 0.2s;
+      }
+
+      &.sortable:hover .sort-icon {
+        opacity: 1;
+      }
+
+      &:first-child {
+        border-top-left-radius: 8px;
+      }
+      &:last-child {
+        border-top-right-radius: 8px;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      background-color: $color-white !important;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: $body-bg-color !important;
+      }
+
+      &.clickable {
+        cursor: pointer;
+      }
+    }
+
+    td {
+      background-color: $color-white !important;
+      font-size: 0.875rem;
+      padding: 0.75rem 1rem;
+      border-left: none !important;
+      border-right: none !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &.empty-state {
+        text-align: center !important;
+      }
+    }
+
+    tr:not(:last-child) td {
+      border-bottom: 1px solid $secondary !important;
+    }
+
+    tr:last-child {
+      td {
+        border-bottom: none !important;
+      }
+
+      td:first-child {
+        border-bottom-left-radius: 8px;
+      }
+      td:last-child {
+        border-bottom-right-radius: 8px;
+      }
+    }
+  }
+}
+
+.table-responsive {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #D7DADB;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #c0c3c4;
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  &::-webkit-scrollbar-button:start:decrement,
+  &::-webkit-scrollbar-button:end:increment {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: #D7DADB transparent;
+}

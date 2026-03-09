@@ -1,0 +1,13 @@
+@if(showValidators){
+    @for(e of errors;track e){
+        @if(validatorToolTip){
+            <div class="invalid-tooltip" style="display: block;">
+                {{e | translateNg}}
+            </div>
+        }@else {
+            <div class="invalid-feedback" style="display: block;">
+                {{e | translateNg}}
+            </div>
+        }
+    }
+}

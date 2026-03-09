@@ -1,0 +1,30 @@
+@use 'variables' as *;
+.icon-container {
+  width: 40px;
+  height: 40px;
+  background-color: hsla(215, 57%, 33%, 0.10);
+}
+
+.icon-content {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+  color: $primary;
+}
+
+.container {
+  max-width: 100% !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.header {
+  h1 {
+    margin-top: 0;
+  }
+
+  .description {
+    padding-left: calc(40px + 0.5rem);
+  }
+}

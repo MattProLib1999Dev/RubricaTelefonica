@@ -1,0 +1,19 @@
+<div #offcanvasRef class="offcanvas" [ngClass]="positionAttribute + ' ' + customClass" tabindex="-1" [attr.id]="uid"
+    [ngStyle]="{'width':size>0?(size + measureType):null}" [attr.data-bs-backdrop]="static?'static':'-'" [attr.data-bs-keyboard]="!static">
+    @if (title.length > 0) {
+        <div class="offcanvas-header bg-primary">
+            <h5 class="offcanvas-title text-white">{{title}}</h5>
+            <button [attr.id]="uid + '_hidebutton_manual'" type="button" class="btn-close text-white" data-bs-toggle="offcanvas" [attr.data-bs-target]="'#' + uid"
+            aria-label="Close" (click)="onclose.emit(false)"></button>
+        </div>
+    }
+    <div class="offcanvas-body p-0">
+        <ng-content></ng-content>
+    </div>
+</div>
+
+<button style="display: none;" [attr.id]="uid + '_showbutton'" data-bs-toggle="offcanvas"
+    [attr.data-bs-target]="'#' + uid"></button>
+
+<button style="display: none;" [attr.id]="uid + '_hidebutton'" data-bs-toggle="offcanvas"
+    [attr.data-bs-target]="'#' + uid" (click)="onclose.emit(false)"></button>

@@ -1,0 +1,70 @@
+@if(!imgCard) {
+    <div class="card sh-card" [ngClass]="'size-' + size + ' ' + customClass">
+        @if(imagesrc.length>0){
+        <img [attr.src]="imagesrc" class="card-img-top" [attr.alt]="imagetext" [attr.height]="imageheight">
+        }
+        @if(title.length>0){
+            <div class="card-header sh-card-header">
+                <div class="card-title sh-card-title">
+                    <h5>{{title}}</h5>
+                </div>
+            </div>
+        }
+        @if(subtitle.length > 0 || text.length > 0) {
+            <div class="p-0">
+                <div class="w-100 sh-card-subtitle">
+                    @if(subtitle.length>0){
+                        <h6 class="card-subtitle">{{subtitle}}</h6>
+                    }
+                    @if(text.length>0){
+                        <span class="card-text text-muted">{{text}}</span>
+                    }
+                </div>
+            </div>
+        }
+        <div class="card-body sh-card-body">
+            <ng-container select="[body]">
+                <ng-content></ng-content>
+            </ng-container>
+            @if(showCount){
+            <div>
+                <h1 class="badge bg-primary fs-5 rounded-pill">
+                    {{count}}
+                </h1>
+            </div>
+            }
+            @if(linkText.length>0){
+                <a href="#" class="card-link" [routerLink]="linkUrl">{{linkText}}</a>
+            }
+        </div>
+        @if(showButton){
+            <div class="card-footer">
+                <div class="btn-group" role="group">
+                    <ng-content select="[footerBtns]"></ng-content>
+                </div>
+            </div>
+        }
+    </div>
+} @else if(!disabled) {
+    <a href="#" [routerLink]="linkUrl" class="img-card">
+        <img
+            [attr.src]="imagesrc"
+            [attr.alt]="imagetext"
+            class="img-card-image"
+        >
+        @if(linkText.length>0){
+            <span>{{ linkText }}</span>
+        }
+    </a>
+} @else {
+    <div class="img-card locked">
+        <img
+            [attr.src]="imagesrc"
+            [attr.alt]="imagetext"
+            class="img-card-image"
+        >
+        @if(linkText.length>0){
+            <span>{{ linkText }}</span>
+        }
+    </div>
+}

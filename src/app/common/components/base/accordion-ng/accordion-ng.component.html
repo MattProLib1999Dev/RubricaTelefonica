@@ -1,0 +1,68 @@
+@if(!timeAccordion) {
+    <div [ngClass]="{'accordion-flush sh-accordion-flush':minimal}"
+      [attr.id]="'acc_'+ uid"
+      [class]="'accordion ' + customClass">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button 
+                    [ngClass]="'accordion-button sh-acc-btn ' + btnCustomClass + ' ' + (!open ? 'collapsed' : '') + ' ' + status" 
+                    type="button" 
+                    data-bs-toggle="collapse"
+                    [attr.data-bs-target]="'#acc_collapse_'+ uid" 
+                    [attr.aria-expanded]="open" 
+                    aria-controls="collapseOne">
+                    {{title}}
+                </button>
+            </h2>
+            <div 
+              [attr.id]="'acc_collapse_'+ uid" 
+              class="accordion-collapse collapse" 
+              [ngClass]="{'show':open}"
+              aria-labelledby="headingOne" 
+              [attr.data-bs-parent]="'acc_'+ uid">
+                <div class="accordion-body">
+                    <ng-content select="[def-accordion]" ></ng-content>
+                </div>
+            </div>
+        </div>
+    </div>
+} @else {
+    <div [ngClass]="'accordion sh-accordion ' + customClass" [attr.id]="'timeAccordion_'+ uid">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+      
+            <button
+              class="accordion-button sh-acc-btn"
+              type="button"
+              data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#acc_collapse_'+ uid"
+              aria-expanded="true"
+              [attr.aria-controls]="'#acc_collapse_'+ uid"
+            >
+      
+              <div class="divider-line"></div>
+      
+              <div class="label-wrapper">
+                <i class="bi bi-clock"></i>
+                <span class="time-range">{{title}}</span>
+                <i class="bi bi-chevron-up chevron"></i>
+              </div>
+      
+            </button>
+      
+          </h2>
+      
+          <div
+            [attr.id]="'acc_collapse_'+ uid"
+            class="accordion-collapse collapse"
+            [attr.data-bs-parent]="'#timeAccordion_'+ uid"
+            aria-labelledby="headingOne"
+            [ngClass]="{'show':open}"
+          >
+            <div class="accordion-body">
+                <ng-content select="[time-accordion]"></ng-content>
+            </div>
+          </div>
+        </div>
+    </div>
+}

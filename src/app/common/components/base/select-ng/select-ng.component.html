@@ -1,0 +1,30 @@
+<div [ngClass]="{'row':inlineLabel}">
+    @if(label.length>0){
+    <label for="{{uid}}" class="sh-form-label form-label" [ngClass]="[inlineLabelClass]">{{label}}</label>
+    }
+    <div class="input-group" [ngClass]="{'col':inlineLabel}">
+        <ng-content [slot]="start"></ng-content>
+        <select [attr.id]="uid" class="form-select {{sizeClass}}" name="pippo" [disabled]="isDisabled()"
+            [ngClass]="{'is-valid':isValid && isDirty,'is-invalid':!isValid && isDirty}"
+            [(ngModel)]="value">
+
+            @if(placeholder.length > 0 && !value){
+                <option value="" disabled selected>{{placeholder}}</option>
+            }
+
+            @if(emptyText.length>0){
+            <option [ngValue]="emptyValue">{{emptyText}}</option>
+            }
+            <ng-content></ng-content>
+            @for(d of data;track d){
+            <option [ngValue]="d[valuefield]" [disabled]="checkDisabled(d)">{{d[textfield] | translateNg}}</option>
+            }
+        </select>
+        <ng-content [slot]="end"></ng-content>
+
+    </div>
+    @if(isDirty){
+    <sh-validation-message [errors]="errors" [showValidators]="showValidators"
+        [validatorToolTip]="validatorToolTip"></sh-validation-message>
+    }
+</div>

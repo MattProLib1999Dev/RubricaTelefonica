@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+    @for (item of tabs; track $index) {
+    @if(item.visible){
+    <li class="nav-item">
+        <a class="nav-link active" [ngClass]="{'active':$index==currentIndex,'disabled':!item.enable}"
+            aria-current="page" href="#" (click)="currentIndex=$index; onSelect.emit($index);false">{{item.title}}</a>
+    </li>
+    }
+    }
+</ul>

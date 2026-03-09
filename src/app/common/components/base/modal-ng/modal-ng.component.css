@@ -1,0 +1,28 @@
+.sh-modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    border-bottom: 1px solid #CEDDE9;
+}
+
+.modal-title {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+}
+
+.modal-subtitle {
+    font-size: 0.875rem;
+    line-height: 1.313rem;
+    font-weight: 400;
+}
+
+.sh-modal-body {
+    background-color: white;
+    border-bottom: 1px solid #CEDDE9;
+}
+
+.sh-modal-footer {
+    background-color: white;
+    padding: 1rem
+}

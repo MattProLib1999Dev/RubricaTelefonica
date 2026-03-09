@@ -1,0 +1,129 @@
+@use 'variables' as *;
+
+.sh-accordion-flush {
+  background: transparent !important;
+
+  .accordion-header {
+    background: transparent;
+  }
+
+  .accordion-item {
+    border: none;
+    border-top: 1px solid #CEDDE9;
+    background-color: transparent;
+  }
+
+  .sh-acc-btn {
+    color: #333638;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none;
+    padding: 0;
+    height: 48px;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 0.75rem;
+      height: 0.75rem;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+      margin-right: 1.75rem;
+    }
+
+  }
+
+  .sh-acc-btn.HIDDEN::before {
+    display: none !important;
+  }
+
+  .sh-acc-btn.OK::before {
+    background-color: #D6FFE5;
+    border: 1px solid #00A63E;
+  }
+
+  .sh-acc-btn.IN_PROGRESS::before {
+    background-color: #FEF3C6;
+    border: 1px solid #B45409;
+  }
+
+  .accordion-body {
+    padding: 0;
+  }
+}
+
+.sh-accordion-flush.bg-white {
+  background: white !important;
+}
+
+.sh-accordion {
+  .accordion-item {
+    border: none;
+  }
+
+  .sh-acc-btn {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none;
+    padding: 0;
+    height: 48px;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::after {
+      display: none;
+    }
+
+    .divider-line {
+      position: absolute;
+      top: 50%;
+      width: 96%;
+      height: 1px;
+      background: #D6E3EC;
+      z-index: 1;
+    }
+
+    .label-wrapper {
+      position: relative;
+      background: #{$body-bg-color};
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 2;
+      font-size: 0.938rem;
+      color: #707779;
+
+      .bi-clock {
+        font-size: 0.938rem;
+        opacity: 0.8;
+      }
+
+      .chevron {
+        font-size: 0.875rem;
+        transition: transform 0.2s ease;
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .accordion-button.collapsed .chevron {
+    transform: rotate(180deg);
+  }
+
+  .accordion-body {
+    background: transparent;
+    padding: 16px;
+  }
+}

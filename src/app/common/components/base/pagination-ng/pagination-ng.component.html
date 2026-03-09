@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-center align-items-center py-3">
+  <button
+    class="pagination-btn"
+    [disabled]="page === 1"
+    (click)="goToPreviousPage()">
+    <mat-icon fontIcon="arrow_back"></mat-icon>
+  </button>
+
+  @for (pageNum of visiblePages; track pageNum) {
+    <button
+      class="pagination-number"
+      [class.active]="page === pageNum"
+      (click)="goToPage(pageNum)">
+      {{ pageNum }}
+    </button>
+  }
+
+  <button
+    class="pagination-btn"
+    [disabled]="page === totalPages"
+    (click)="goToNextPage()">
+    <mat-icon fontIcon="arrow_forward"></mat-icon>
+  </button>
+</div>

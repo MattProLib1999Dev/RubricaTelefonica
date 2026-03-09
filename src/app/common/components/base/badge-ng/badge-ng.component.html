@@ -1,0 +1,19 @@
+@if(squared) {
+    <div [attr.id]="uid" class="sh-badge sh-square-badge d-flex justify-content-center align-items-center" [ngClass]="color + ' ' + customClass + (inverted ? 'inverted' : '')" [style]="width.length > 0 ? `width: ${width}; height: ${width}` : 'width: auto; height: auto'">
+        <ng-content select="[square]"></ng-content>
+    </div>
+} @else if(rounded) {
+    <div [attr.id]="uid" class="sh-badge sh-round-badge d-flex justify-content-center align-items-center" [ngClass]="color + ' ' + customClass+ (inverted ? 'inverted' : '')" [style]="width.length > 0 ? `width: ${width}; height: ${width}` : 'width: auto; height: auto'">
+        <ng-content select="[round]"></ng-content>
+    </div>
+} @else if(pill) {
+    <div [attr.id]="uid" class="sh-badge badge rounded-pill d-flex justify-content-center align-items-center" [ngClass]="color + ' ' + customClass + (inverted ? 'inverted' : '')"
+        [style]="`width: ${width.length > 0 ? width : 'auto'}; height: ${height.length > 0 ? height : 'auto'};`">
+        <ng-content select="[pill]"></ng-content>
+    </div>
+} @else {
+    <div [attr.id]="uid" class="sh-default-badge badge d-flex justify-content-center align-items-center" [ngClass]="color + ' ' + customClass + (inverted ? 'inverted' : '')"
+        [style]="`width: ${width.length > 0 ? width : 'auto'}; height: ${height.length > 0 ? height : 'auto'};`">
+        <ng-content select="[badge]"></ng-content>
+    </div>
+}

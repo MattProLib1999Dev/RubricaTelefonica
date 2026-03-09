@@ -1,0 +1,118 @@
+@use 'variables' as *;
+.sh-card {
+    padding: 8px 24px;
+    margin: 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0000001a;
+    border: none;
+}
+
+.sh-card-header {
+    margin: 20px 0;
+    border-bottom: none;
+    padding: 0;
+}
+
+.sh-card-title {
+    h5 {
+        font-size: 1.125rem;
+        line-height: 1.5rem;
+        font-weight: 700;
+    }
+}
+
+.sh-card-subtitle {
+    h6 {
+        font-size: 0.875rem;
+        line-height: 1.313rem;
+        font-weight: 500;
+    }
+    span {
+        font-size: 0.75rem;
+        line-height: 1rem;
+        font-weight: 400;
+    }
+}
+
+.sh-card-body {
+    padding: 0;
+    display: flex;
+}
+
+.size-sm {
+    max-width: 350px;
+}
+
+.size-md {
+    max-width: 580px;
+}
+
+.size-full {
+    width: 100%;
+}
+
+.img-card {
+    background-color: #ffffff;
+    border: 2px solid #ff6600;
+    border-radius: 15px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: #003366;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+}
+
+.img-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.15);
+}
+
+.img-card:focus {
+    outline: 2px solid #ff6600;
+    outline-offset: 2px;
+}
+
+.img-card:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 51, 102, 0.1);
+}
+
+.locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.locked:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.locked::after {
+    content: '🔒';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.2rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-card-image {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.5rem;
+    overflow: clip;
+}
+  

@@ -1,0 +1,35 @@
+@use 'variables' as *;
+
+
+.cursor-pointer {
+    cursor: default;
+}
+
+.multiselect {
+    min-height: 2.563rem;
+}
+
+.multiselect-focus {
+    box-shadow: $input-focus-box-shadow;
+}
+
+.multi-dropdown-menu {
+    padding: 16px 8px;
+    top: 100%;
+    position: absolute;
+}
+
+.sh-multi-dropdown {
+    z-index: 2000;
+}
+
+.multiselect.disabled {
+    opacity: 1;
+    background-color: #{$background-color-disabled};
+    border-color: #{$border-color-disabled};
+
+    & input {
+        background-color: #{$background-color-disabled};
+        color: #{$color-disabled};
+    }
+}

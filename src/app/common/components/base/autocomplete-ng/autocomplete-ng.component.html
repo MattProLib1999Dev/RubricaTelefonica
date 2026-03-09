@@ -1,0 +1,47 @@
+
+@if(label.length>0){
+    <label for="{{uid}}" class="sh-form-label form-label" [ngClass]="[inlineLabelClass]">{{label}}</label>
+}
+
+<div class="position-relative sh-input-group">
+    <div
+      class="form-control autocomplete-input-wrapper d-flex flex-wrap gap-1 align-items-center"
+      [ngClass]="{'col':inlineLabel, 'is-loading': loading, 'loaded': (!loading && !!selected().text?.length),
+        'is-valid':isValid && isDirty,'is-invalid':!isValid && isDirty, 'autocomplete-input-wrapper-focused': elemFocused, 'disabled' : isDisabled()}"
+      (click)="inputRefAutocomplete.focus()">
+        <input
+            #inputRefAutocomplete
+            type="text"
+            class="autocomplete-input border-0 flex-grow-1"
+            style="min-width: 120px; outline: none;"
+            [attr.placeholder]="'CERCA_PLACEHOLDER' | translateNg"
+            [ngModel]="selected().text"
+            [disabled]="isDisabled()"
+            (keyup)="change($event)"/>
+
+        @if(loading){
+            <div class="spinner-border text-primary spinner-border-sm rounded-circle" role="status">
+                <span class="visually-hidden">...Loading</span>
+            </div>
+        } @else if (!!data.length) {
+            <button (click)="resetData()" type="button" class="btn-close" style="opacity: 1;" aria-label="Close"></button>
+        }
+    </div>
+
+    @if(!!data.length && dropdownOpen) {
+        <ul class="dropdown-menu autocomplete-dropdown-menu w-100 mt-1 show" style="max-height: 150px; overflow-y: auto;">
+            @for (item of data; track $index) {
+            <li class="dropdown-item w-100" (click)="select(item)">
+                <span class="d-flex overflow-x-hidden">
+                    {{item[textfield]}}
+                </span>
+            </li>
+            }
+        </ul>
+    }
+</div>
+
+@if(isDirty){
+    <sh-validation-message [errors]="errors" [showValidators]="showValidators"
+        [validatorToolTip]="validatorToolTip"></sh-validation-message>
+}

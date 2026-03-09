@@ -1,0 +1,7 @@
+<div class="form-check" [ngClass]="{'form-check-inline':inlineStack}">
+    <input type="radio" value="" [attr.id]="uid" [disabled]="isDisabled()" [attr.name]="name" [value]="radiovalue"
+        [ngClass]="{'form-check-input':!enableButton,'btn-check':enableButton}" [(ngModel)]="value">
+    <label [ngClass]="{'form-check-label':!enableButton,'btn':enableButton, 'w-100': fullLength}" class="{{buttonClass + ' ' + customClass}} fw-medium" for="{{uid}}">
+        {{label}}
+    </label>
+</div>

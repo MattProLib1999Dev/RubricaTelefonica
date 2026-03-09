@@ -1,0 +1,72 @@
+
+::ng-deep {
+  sh-select.ng-dirty,
+  sh-select.ng-valid:not(.ng-pristine) {
+    .form-select {
+      background-color: #E8F4FD !important;
+      border-color: #A3C0D6 !important;
+      color: #244C84 !important;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+      background-position: right 0.75rem center !important;
+      background-size: 16px 12px !important;
+      background-repeat: no-repeat !important;
+
+      option {
+        background-color: white !important;
+        color: inherit !important;
+      }
+
+      option:checked {
+        background-color: #0d6efd !important;
+        color: white !important;
+      }
+    }
+  }
+
+  sh-multi-select.ng-dirty,
+  sh-multi-select.ng-valid:not(.ng-pristine) {
+    .form-select {
+      background-color: #E8F4FD !important;
+      border-color: #A3C0D6 !important;
+      color: #244C84 !important;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+      background-position: right 0.75rem center !important;
+      background-size: 16px 12px !important;
+      background-repeat: no-repeat !important;
+    }
+  }
+
+  sh-textbox.ng-dirty:not(.ng-invalid),
+  sh-textbox.ng-valid:not(.ng-pristine) {
+    .form-control {
+      background-color: #E8F4FD !important;
+      border-color: #A3C0D6 !important;
+      color: #244C84 !important;
+      background-image: none !important;
+    }
+  }
+
+  sh-datepicker.ng-dirty,
+  sh-datepicker.ng-valid:not(.ng-pristine) {
+    .form-control {
+      background-color: #E8F4FD !important;
+      border-color: #A3C0D6 !important;
+      color: #244C84 !important;
+      background-image: none !important;
+    }
+  }
+
+  sh-autocomplete.ng-dirty,
+  sh-autocomplete.ng-valid:not(.ng-pristine) {
+    .form-control {
+      background-color: #E8F4FD !important;
+      border-color: #A3C0D6 !important;
+      color: #244C84 !important;
+      background-image: none !important;
+    }
+  }
+
+  .btn-secondary {
+    font-size: .875rem !important;
+  }
+}

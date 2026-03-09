@@ -1,0 +1,24 @@
+<div [ngClass]="{'row align-items-baseline':inlineLabel}">
+    @if(label.length>0){
+        <label for="{{uid}}" class="sh-form-label form-label" [ngClass]="[inlineLabelClass]">{{label}}</label>
+    }
+    <div class="input-group" [ngClass]="{'col':inlineLabel}">
+        <input
+            [attr.id]="uid"
+            class="{{sizeClass}}" 
+            [disabled]="isDisabled()" 
+            [readonly]="readonly"
+            type="text"
+            autocomplete="off" 
+            aria-autocomplete="none"
+            [ngClass]="{'is-valid':isValid && isDirty,'is-invalid':!isValid && isDirty,'form-control-plaintext':readonlyPlain,'form-control':!readonlyPlain}"
+            placeholder="--:--"
+            maxlength="5"
+            [(ngModel)]="value"
+            (input)="onInput($event)">
+    </div>
+    @if(isDirty){
+        <sh-validation-message [errors]="errors" [showValidators]="showValidators"
+            [validatorToolTip]="validatorToolTip"></sh-validation-message>
+    }
+</div>

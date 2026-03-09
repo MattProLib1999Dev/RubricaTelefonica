@@ -1,0 +1,87 @@
+<div [ngClass]="{'d-flex justify-content-start gap-2 align-items-center':inlineLabel}">
+    @if(label.length>0){
+        <label for="{{uid}}" class="sh-form-label form-label" [ngClass]="(!!inlineLabelClass.length ? inlineLabelClass  : ' ') + (inlineLabel ? 'm-0' : '')">{{label}}</label>
+    }
+    
+    @if(type == 'button') {
+        <mat-form-field class="datepicker-anchor">
+            <input [attr.id]="uid"
+                class="{{sizeClass}}"
+                [disabled]="isDisabled()"
+                [readonly]="readonly"
+                autocomplete="off"
+                aria-autocomplete="none"
+                placeholder="{{placeholder}}"
+                [ngModel]="valueSign()"
+                (ngModelChange)="value = $event"
+                matInput
+                [ngxMatDatetimePicker]="buttonPicker"
+                #dateInput
+                class="d-none"
+                (dateChange)="checkTime()"
+            >
+        </mat-form-field>
+        <ngx-mat-datetime-picker #buttonPicker [calendarHeaderComponent]="shPickerHeader"
+            [hideTime]="hideTime" [touchUi]="isTouch"></ngx-mat-datetime-picker>
+
+        <div class="d-flex flex-nowrap">
+            <button type="button"
+                class="btn datepicker-slider-btn d-flex align-items-center gap-2"
+                [ngClass]="customClass"
+                (click)="sumDuration(-1, 'day')">
+                <mat-icon class="datepicker-button-icon">chevron_backward</mat-icon>
+            </button>
+
+            <button type="button"
+                class="btn datepicker-btn d-flex align-items-center gap-2"
+                [ngClass]="customClass"
+                (click)="buttonPicker.open()">
+                <span>
+                    {{ valueSign() ? (valueSign() | date:'dd MMMM yyyy') : ''}}
+                </span>
+                <mat-icon class="datepicker-button-icon">calendar_today</mat-icon>
+
+            </button>
+
+            <button type="button"
+                class="btn datepicker-slider-btn d-flex align-items-center gap-2"
+                [ngClass]="customClass"
+                (click)="sumDuration(1, 'day')">
+                <mat-icon class="datepicker-button-icon">chevron_forward</mat-icon>
+            </button>
+        </div>
+    } @else {
+        <div class="position-relative">
+            <input #pickerInput [attr.id]="uid"
+                class="{{sizeClass + ' form-control sh-datepicker-norm'}}"
+                [disabled]="isDisabled()"
+                [readonly]="readonly"
+                autocomplete="off"
+                aria-autocomplete="none"
+                placeholder="{{placeholder}}"
+                [ngModel]="valueSign()"
+                (ngModelChange)="value = $event"
+                [ngxMatDatetimePicker]="picker"
+                #dateInput
+                readonly
+                [min]="minDate"
+                [max]="maxDate" 
+                (dateChange)="checkTime()"
+            >
+            <button
+                type="button"
+                class="btn btn-link position-absolute top-50 end-0 translate-middle-y me-2 p-0 d-flex align-items-center"
+                (click)="picker.open()"
+                aria-label="Open calendar"
+            >
+                <mat-icon class="picker-icon material-symbols-outlined">calendar_today</mat-icon>
+            </button>
+            <ngx-mat-datetime-picker #picker [calendarHeaderComponent]="shPickerHeader"
+                    [hideTime]="hideTime" [touchUi]="isTouch"></ngx-mat-datetime-picker>
+        </div>
+    }
+    @if(isDirty){
+        <sh-validation-message [errors]="errors" [showValidators]="showValidators"
+            [validatorToolTip]="validatorToolTip"></sh-validation-message>
+    }
+</div>
