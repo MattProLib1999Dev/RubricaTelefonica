@@ -1,0 +1,19 @@
+#menu {
+  display: block;
+  float: left;
+
+}
+
+#navbarNav {
+  display: block;
+  justify-content: flex-start;
+}
+
+li {
+  margin-right: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 50px;
+}
